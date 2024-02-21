@@ -46,7 +46,7 @@ namespace Parrot
 
     public class AfricanParrot : Parrot
     {
-        public AfricanParrot(int numberOfCoconuts, double voltage, bool isNailed) : base(
+        public AfricanParrot(int numberOfCoconuts, bool isNailed) : base(
             numberOfCoconuts, isNailed)
         {
         }
@@ -74,7 +74,7 @@ namespace Parrot
 
     public class EuropeanParrot : Parrot
     {
-        public EuropeanParrot(int numberOfCoconuts, double voltage, bool isNailed)
+        public EuropeanParrot(int numberOfCoconuts, bool isNailed)
             : base( numberOfCoconuts, isNailed)
         {
         }
