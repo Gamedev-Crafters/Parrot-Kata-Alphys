@@ -22,7 +22,7 @@ namespace Parrot
     {
         private readonly double _voltage;
         
-        public NorwegianBlueParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(
+        public NorwegianBlueParrot(int numberOfCoconuts, double voltage, bool isNailed) : base(
              numberOfCoconuts, isNailed)
         {
             _voltage = voltage;
@@ -46,7 +46,7 @@ namespace Parrot
 
     public class AfricanParrot : Parrot
     {
-        public AfricanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(
+        public AfricanParrot(int numberOfCoconuts, double voltage, bool isNailed) : base(
             numberOfCoconuts, isNailed)
         {
         }
@@ -74,7 +74,7 @@ namespace Parrot
 
     public class EuropeanParrot : Parrot
     {
-        public EuropeanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed)
+        public EuropeanParrot(int numberOfCoconuts, double voltage, bool isNailed)
             : base( numberOfCoconuts, isNailed)
         {
         }
