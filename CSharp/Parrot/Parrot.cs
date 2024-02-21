@@ -18,12 +18,12 @@ namespace Parrot
             _isNailed = isNailed;
         }
 
-        public double GetSpeed()
+        public virtual double GetSpeed()
         {
             switch (_type)
             {
                 case ParrotTypeEnum.EUROPEAN:
-                    return GetBaseSpeed();
+                    return new EuropeanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetSpeed();
                 case ParrotTypeEnum.AFRICAN:
                     return Math.Max(0, GetBaseSpeed() - GetLoadFactor() * _numberOfCoconuts);
                 case ParrotTypeEnum.NORWEGIAN_BLUE:
@@ -43,7 +43,7 @@ namespace Parrot
             return 9.0;
         }
 
-        private double GetBaseSpeed()
+        protected double GetBaseSpeed()
         {
             return 12.0;
         }
@@ -65,7 +65,21 @@ namespace Parrot
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             return value;
+        }
+    }
+
+    public class EuropeanParrot : Parrot
+    {
+        public EuropeanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed)
+            : base(type, numberOfCoconuts, voltage, isNailed)
+        {
+        }
+
+        public override double GetSpeed()
+        {
+            return GetBaseSpeed();
         }
     }
 }
