@@ -6,12 +6,16 @@ namespace Parrot
     {
         protected Parrot()
         {
-            
         }
 
         public abstract double GetSpeed();
 
         public abstract string GetCry();
+        
+        protected double GetBaseSpeed()
+        {
+            return 12.0;
+        }
     }
 
     public class NorwegianBlueParrot : Parrot
@@ -27,12 +31,7 @@ namespace Parrot
 
         public override double GetSpeed()
         {
-            return _isNailed ? 0 : GetBaseSpeed();
-        }
-
-        private double GetBaseSpeed()
-        {
-            return Math.Min(24.0, _voltage * 12.0);
+            return _isNailed ? 0 : Math.Min(24.0, _voltage * GetBaseSpeed());
         }
         
         public override string GetCry()
@@ -52,11 +51,6 @@ namespace Parrot
         public override double GetSpeed()
         {
             return Math.Max(0, GetBaseSpeed() - GetLoadFactor() * _numberOfCoconuts);
-        }
-
-        private double GetBaseSpeed()
-        {
-            return 12.0;
         }
         
         public override string GetCry()
@@ -78,11 +72,6 @@ namespace Parrot
         public override double GetSpeed()
         {
             return GetBaseSpeed();
-        }
-
-        private double GetBaseSpeed()
-        {
-            return 12.0;
         }
 
         public override string GetCry()
