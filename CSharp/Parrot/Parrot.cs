@@ -33,19 +33,9 @@ namespace Parrot
             }
         }
 
-        protected double GetBaseSpeed(double voltage)
-        {
-            return Math.Min(24.0, voltage * GetBaseSpeed());
-        }
-
         protected double GetLoadFactor()
         {
             return 9.0;
-        }
-
-        protected double GetBaseSpeed()
-        {
-            return 12.0;
         }
 
         public string GetCry()
@@ -78,8 +68,13 @@ namespace Parrot
 
         public override double GetSpeed()
         {
-            return _isNailed ? 0 : GetBaseSpeed(_voltage);
+            return _isNailed ? 0 : GetBaseSpeed();
         }
+        private double GetBaseSpeed()
+        {
+            return Math.Min(24.0, _voltage * 12.0);
+        }
+        
     }
 
     public class AfricanParrot : Parrot
@@ -92,7 +87,10 @@ namespace Parrot
         {
             return Math.Max(0, GetBaseSpeed() - GetLoadFactor() * _numberOfCoconuts);
         }
-
+        private double GetBaseSpeed()
+        {
+            return 12.0;
+        }
     }
 
     public class EuropeanParrot : Parrot
@@ -105,6 +103,10 @@ namespace Parrot
         public override double GetSpeed()
         {
             return GetBaseSpeed();
+        }
+        private double GetBaseSpeed()
+        {
+            return 12.0;
         }
     }
 }
