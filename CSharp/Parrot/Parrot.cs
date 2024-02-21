@@ -2,7 +2,7 @@
 
 namespace Parrot
 {
-    public class Parrot
+    public abstract class Parrot
     {
         protected readonly bool _isNailed;
         protected readonly int _numberOfCoconuts;
@@ -17,41 +17,9 @@ namespace Parrot
             _isNailed = isNailed;
         }
 
-        public virtual double GetSpeed()
-        {
-            switch (_type)
-            {
-                case ParrotTypeEnum.EUROPEAN:
-                    return new EuropeanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetSpeed();
-                case ParrotTypeEnum.AFRICAN:
-                    return new AfricanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetSpeed();
-                case ParrotTypeEnum.NORWEGIAN_BLUE:
-                    return new NorwegianBlueParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetSpeed();
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+        public abstract double GetSpeed();
 
-        public virtual string GetCry()
-        {
-            string value;
-            switch (_type)
-            {
-                case ParrotTypeEnum.EUROPEAN:
-                    value = new EuropeanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetCry();
-                    break;
-                case ParrotTypeEnum.AFRICAN:
-                    value = new AfricanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetCry();
-                    break;
-                case ParrotTypeEnum.NORWEGIAN_BLUE:
-                    value = new NorwegianBlueParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetCry();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            return value;
-        }
+        public abstract string GetCry();
     }
 
     public class NorwegianBlueParrot : Parrot
