@@ -5,11 +5,9 @@ namespace Parrot
     public abstract class Parrot
     {
         protected readonly bool _isNailed;
-        protected readonly int _numberOfCoconuts;
 
-        protected Parrot(int numberOfCoconuts, bool isNailed)
+        protected Parrot(bool isNailed)
         {
-            _numberOfCoconuts = numberOfCoconuts;
             _isNailed = isNailed;
         }
 
@@ -22,8 +20,8 @@ namespace Parrot
     {
         private readonly double _voltage;
         
-        public NorwegianBlueParrot(int numberOfCoconuts, double voltage, bool isNailed) : base(
-             numberOfCoconuts, isNailed)
+        public NorwegianBlueParrot(double voltage, bool isNailed) : base(
+             isNailed)
         {
             _voltage = voltage;
         }
@@ -46,9 +44,11 @@ namespace Parrot
 
     public class AfricanParrot : Parrot
     {
+        private readonly int _numberOfCoconuts;
         public AfricanParrot(int numberOfCoconuts, bool isNailed) : base(
-            numberOfCoconuts, isNailed)
+            isNailed)
         {
+            _numberOfCoconuts = numberOfCoconuts;
         }
 
         public override double GetSpeed()
@@ -74,8 +74,8 @@ namespace Parrot
 
     public class EuropeanParrot : Parrot
     {
-        public EuropeanParrot(int numberOfCoconuts, bool isNailed)
-            : base( numberOfCoconuts, isNailed)
+        public EuropeanParrot(bool isNailed)
+            : base( isNailed)
         {
         }
         public override double GetSpeed()
