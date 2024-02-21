@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Parrot
 {
@@ -31,11 +30,6 @@ namespace Parrot
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        protected double GetLoadFactor()
-        {
-            return 9.0;
         }
 
         public virtual string GetCry()
@@ -103,6 +97,11 @@ namespace Parrot
         public override string GetCry()
         {
             return "Sqaark!";
+        }
+
+        private double GetLoadFactor()
+        {
+            return 9.0;
         }
     }
 
