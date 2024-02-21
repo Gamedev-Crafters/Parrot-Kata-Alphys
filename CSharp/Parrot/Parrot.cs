@@ -6,12 +6,10 @@ namespace Parrot
     {
         protected readonly bool _isNailed;
         protected readonly int _numberOfCoconuts;
-        protected readonly double _voltage;
 
-        protected Parrot(int numberOfCoconuts, double voltage, bool isNailed)
+        protected Parrot(int numberOfCoconuts, bool isNailed)
         {
             _numberOfCoconuts = numberOfCoconuts;
-            _voltage = voltage;
             _isNailed = isNailed;
         }
 
@@ -22,9 +20,12 @@ namespace Parrot
 
     public class NorwegianBlueParrot : Parrot
     {
+        private readonly double _voltage;
+        
         public NorwegianBlueParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(
-             numberOfCoconuts, voltage, isNailed)
+             numberOfCoconuts, isNailed)
         {
+            _voltage = voltage;
         }
 
         public override double GetSpeed()
@@ -46,7 +47,7 @@ namespace Parrot
     public class AfricanParrot : Parrot
     {
         public AfricanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(
-            numberOfCoconuts, voltage, isNailed)
+            numberOfCoconuts, isNailed)
         {
         }
 
@@ -74,7 +75,7 @@ namespace Parrot
     public class EuropeanParrot : Parrot
     {
         public EuropeanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed)
-            : base( numberOfCoconuts, voltage, isNailed)
+            : base( numberOfCoconuts, isNailed)
         {
         }
         public override double GetSpeed()
