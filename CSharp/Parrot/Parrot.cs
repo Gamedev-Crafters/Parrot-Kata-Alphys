@@ -38,19 +38,19 @@ namespace Parrot
             return 9.0;
         }
 
-        public string GetCry()
+        public virtual string GetCry()
         {
             string value;
             switch (_type)
             {
                 case ParrotTypeEnum.EUROPEAN:
-                    value = "Sqoork!";
+                    value = new EuropeanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetCry();
                     break;
                 case ParrotTypeEnum.AFRICAN:
-                    value = "Sqaark!";
+                    value = new AfricanParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetCry();
                     break;
                 case ParrotTypeEnum.NORWEGIAN_BLUE:
-                    value = _voltage > 0 ? "Bzzzzzz" : "...";
+                    value = new NorwegianBlueParrot(_type, _numberOfCoconuts, _voltage, _isNailed).GetCry();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -62,7 +62,8 @@ namespace Parrot
 
     public class NorwegianBlueParrot : Parrot
     {
-        public NorwegianBlueParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(type, numberOfCoconuts, voltage, isNailed)
+        public NorwegianBlueParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(
+            type, numberOfCoconuts, voltage, isNailed)
         {
         }
 
@@ -70,26 +71,38 @@ namespace Parrot
         {
             return _isNailed ? 0 : GetBaseSpeed();
         }
+
         private double GetBaseSpeed()
         {
             return Math.Min(24.0, _voltage * 12.0);
         }
         
+        public override string GetCry()
+        {
+            return _voltage > 0 ? "Bzzzzzz" : "...";
+        }
     }
 
     public class AfricanParrot : Parrot
     {
-        
-        public AfricanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(type, numberOfCoconuts, voltage, isNailed)
+        public AfricanParrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, bool isNailed) : base(type,
+            numberOfCoconuts, voltage, isNailed)
         {
         }
+
         public override double GetSpeed()
         {
             return Math.Max(0, GetBaseSpeed() - GetLoadFactor() * _numberOfCoconuts);
         }
+
         private double GetBaseSpeed()
         {
             return 12.0;
+        }
+        
+        public override string GetCry()
+        {
+            return "Sqaark!";
         }
     }
 
@@ -104,9 +117,15 @@ namespace Parrot
         {
             return GetBaseSpeed();
         }
+
         private double GetBaseSpeed()
         {
             return 12.0;
+        }
+
+        public override string GetCry()
+        {
+            return "Sqoork!";
         }
     }
 }
