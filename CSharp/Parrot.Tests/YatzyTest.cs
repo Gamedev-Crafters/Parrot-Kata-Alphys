@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -19,6 +19,15 @@ namespace Parrot.Tests;
 
 public class YatzyTest
 {
+
+    [Fact]
+    public void On_Start_All_Categories_Should_Be_Available()
+    {
+        var yatzy = new YatzyGame();
+        var result = yatzy.RemainingCategories();
+        Assert.Equal(2, result.Count);
+    }
+    
     [Fact]
     public void Chance_Category_Should_Return_Throw_Addition()
     {
@@ -38,6 +47,18 @@ public class YatzyTest
     public void gfaadsfsad()
     {
         Assert.Equal(0, new YatzyCategory().ComputePoints(new Roll(1, 3, 1, 1, 1)));
+    }
+}
+
+public class YatzyGame
+{
+    public List<YatzyCategory> RemainingCategories()
+    {
+        return new List<YatzyCategory>
+        {
+            new YatzyCategory(), 
+            new YatzyCategory()
+        };
     }
 }
 
