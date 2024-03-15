@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using Xunit;
 
 namespace Parrot.Tests;
@@ -22,36 +23,50 @@ public class YatzyTest
     public void Chance_Category_Should_Return_Throw_Addition()
     {
         var category = new ChanceCategory();
-        var result = category.ComputePoints(5,4,3,4,1);
+        var result = category.ComputePoints(new Roll(5,4,3,4,1));
         Assert.Equal(5 + 4 + 3 + 4 + 1,result);
     }
 
     [Fact]
     public void Yatzy_Category_Should_Return_Throw_Yatzy()
     {
-        Assert.Equal(50, new YatzyCategory().ComputePoints(1, 1, 1, 1, 1));
+        Assert.Equal(50, new YatzyCategory().ComputePoints(new Roll(1, 1, 1, 1, 1)));
     }
     
     
     [Fact]
     public void gfaadsfsad()
     {
-        Assert.Equal(0, new YatzyCategory().ComputePoints(1, 3, 1, 1, 1));
+        Assert.Equal(0, new YatzyCategory().ComputePoints(new Roll(1, 3, 1, 1, 1)));
     }
 }
 
 public class YatzyCategory
 {
-    public int ComputePoints(int i, int i1, int i2, int i3, int i4)
+    public int ComputePoints(Roll roll)
     {
-        return i == i1 && i1 == i2 && i2 == i3 && i3 == i4 ? 50 : 0;
+        return roll.Dices[0] == roll.Dices[1] 
+               && roll.Dices[1] == roll.Dices[2] 
+               && roll.Dices[2] == roll.Dices[3] 
+               && roll.Dices[3] == roll.Dices[4] ? 50 : 0;
     }
 }
 
 public class ChanceCategory
 {
-    public int ComputePoints(int i, int i1, int i2, int i3, int i4)
+    public int ComputePoints(Roll roll)
     {
-        return i + i1 + i2 + i3 + i4;
+        return roll.Dices.Sum();
+    }
+}
+
+public class Roll
+{
+    public int[] Dices => dices;
+    private int[] dices;
+
+    public Roll(params int[] dices)
+    {
+        this.dices = dices;
     }
 }
