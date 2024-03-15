@@ -19,17 +19,38 @@ namespace Parrot.Tests;
 public class YatzyTest
 {
     [Fact]
-    public void ChanceCategoryShouldReturnThrowAddition()
+    public void Chance_Category_Should_Return_Throw_Addition()
     {
         var category = new ChanceCategory();
-        var result = category.computePoints(5,4,3,4,1);
-        Assert.Equal(17,result);
+        var result = category.ComputePoints(5,4,3,4,1);
+        Assert.Equal(5 + 4 + 3 + 4 + 1,result);
+    }
+
+    [Fact]
+    public void Yatzy_Category_Should_Return_Throw_Yatzy()
+    {
+        Assert.Equal(50, new YatzyCategory().ComputePoints(1, 1, 1, 1, 1));
+    }
+    
+    
+    [Fact]
+    public void gfaadsfsad()
+    {
+        Assert.Equal(0, new YatzyCategory().ComputePoints(1, 3, 1, 1, 1));
+    }
+}
+
+public class YatzyCategory
+{
+    public int ComputePoints(int i, int i1, int i2, int i3, int i4)
+    {
+        return 50;
     }
 }
 
 public class ChanceCategory
 {
-    public int computePoints(int i, int i1, int i2, int i3, int i4)
+    public int ComputePoints(int i, int i1, int i2, int i3, int i4)
     {
         return i + i1 + i2 + i3 + i4;
     }
