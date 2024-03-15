@@ -27,6 +27,14 @@ public class YatzyTest
         var result = yatzy.RemainingCategories();
         Assert.Equal(2, result.Count);
     }
+
+    [Fact]
+    public void After_Roll_Registering_fñlaksdjflñkjasd()
+    {
+        var yatzy = new YatzyGame();
+        yatzy.RegisterRoll(new Roll(1, 3, 4, 5, 6));
+        Assert.Equal(1,yatzy.Rolls);
+    }
     
     [Fact]
     public void Chance_Category_Should_Return_Throw_Addition()
@@ -52,6 +60,8 @@ public class YatzyTest
 
 public class YatzyGame
 {
+    public int Rolls => rolls;
+    private int rolls;
     public List<Category> RemainingCategories()
     {
         return new List<Category>
@@ -60,6 +70,13 @@ public class YatzyGame
             new ChanceCategory()
         };
     }
+
+    public void RegisterRoll(Roll roll)
+    {
+        rolls += 1;
+    }
+
+    
 }
 
 public interface Category
