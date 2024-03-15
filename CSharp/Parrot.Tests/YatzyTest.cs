@@ -1,4 +1,7 @@
-﻿namespace Parrot.Tests;
+﻿using System.ComponentModel;
+using Xunit;
+
+namespace Parrot.Tests;
 
 /*
  * El juego se conforma de un número de rondas en el que se asocia
@@ -15,5 +18,19 @@
 
 public class YatzyTest
 {
-        
+    [Fact]
+    public void ChanceCategoryShouldReturnThrowAddition()
+    {
+        var category = new ChanceCategory();
+        var result = category.computePoints(5,4,3,4,1);
+        Assert.Equal(17,result);
+    }
+}
+
+public class ChanceCategory
+{
+    public int computePoints(int i, int i1, int i2, int i3, int i4)
+    {
+        return i + i1 + i2 + i3 + i4;
+    }
 }
