@@ -60,6 +60,15 @@ public class YatzyTest
     [Fact]
     public void Compute_Points_When_Category_Is_Assigned()
     {
+        var yatzy = new YatzyGame();
+        var roll = new Roll(4, 5, 4, 2, 6);
+        var expected = new ChanceCategory().ComputePoints(roll);
+        yatzy.RegisterRoll(roll);
+        
+        
+        yatzy.CategorizeLastRoll(yatzy.RemainingCategories().First());
+        
+        Assert.Equal(expected, yatzy.Score);
         
     }
     
@@ -104,8 +113,8 @@ public class YatzyGame
     {
         remainingCategories = new List<Category>
         {
-            new YatzyCategory(), 
-            new ChanceCategory()
+            new ChanceCategory(),
+            new YatzyCategory()
         };
     }
     
@@ -123,6 +132,7 @@ public class YatzyGame
 
     public void CategorizeLastRoll(Category first)
     {
+        Score = first.ComputePoints(lastRoll);
         remainingCategories.Remove(first);
     }
 }
