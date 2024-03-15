@@ -45,10 +45,7 @@ public class YatzyCategory
 {
     public int ComputePoints(Roll roll)
     {
-        return roll.Dices[0] == roll.Dices[1] 
-               && roll.Dices[1] == roll.Dices[2] 
-               && roll.Dices[2] == roll.Dices[3] 
-               && roll.Dices[3] == roll.Dices[4] ? 50 : 0;
+        return roll.Dices.Distinct().Count() == 1 ? 50 : 0;
     }
 }
 
