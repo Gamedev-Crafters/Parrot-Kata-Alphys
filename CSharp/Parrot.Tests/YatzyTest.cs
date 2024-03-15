@@ -89,12 +89,16 @@ public class YatzyGame
 {
     public int Rolls => rolls;
     public Roll LastRoll => lastRoll;
-    public int Score => score;
+
+    public int Score
+    {
+        get;
+        private set;
+    }
 
     private int rolls;
     private Roll lastRoll;
     private List<Category> remainingCategories;
-    private int score;
 
     public YatzyGame()
     {
