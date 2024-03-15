@@ -32,8 +32,10 @@ public class YatzyTest
     public void After_Roll_Registering_fñlaksdjflñkjasd()
     {
         var yatzy = new YatzyGame();
-        yatzy.RegisterRoll(new Roll(1, 3, 4, 5, 6));
+        var roll = new Roll(1, 3, 4, 5, 6);
+        yatzy.RegisterRoll(roll);
         Assert.Equal(1,yatzy.Rolls);
+        Assert.Equal(roll, yatzy.LastRoll);
     }
     
     [Fact]
@@ -61,7 +63,11 @@ public class YatzyTest
 public class YatzyGame
 {
     public int Rolls => rolls;
+    public Roll LastRoll => lastRoll;
+
     private int rolls;
+    private Roll lastRoll;
+
     public List<Category> RemainingCategories()
     {
         return new List<Category>
@@ -73,6 +79,7 @@ public class YatzyGame
 
     public void RegisterRoll(Roll roll)
     {
+        lastRoll = roll;
         rolls += 1;
     }
 
