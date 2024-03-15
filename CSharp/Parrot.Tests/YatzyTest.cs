@@ -44,7 +44,7 @@ public class YatzyCategory
 {
     public int ComputePoints(int i, int i1, int i2, int i3, int i4)
     {
-        return 50;
+        return i == i1 && i1 == i2 && i2 == i3 && i3 == i4 ? 50 : 0;
     }
 }
 
