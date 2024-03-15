@@ -52,17 +52,22 @@ public class YatzyTest
 
 public class YatzyGame
 {
-    public List<YatzyCategory> RemainingCategories()
+    public List<Category> RemainingCategories()
     {
-        return new List<YatzyCategory>
+        return new List<Category>
         {
             new YatzyCategory(), 
-            new YatzyCategory()
+            new ChanceCategory()
         };
     }
 }
 
-public class YatzyCategory
+public interface Category
+{
+    int ComputePoints(Roll roll);
+}
+
+public class YatzyCategory : Category
 {
     public int ComputePoints(Roll roll)
     {
@@ -70,7 +75,7 @@ public class YatzyCategory
     }
 }
 
-public class ChanceCategory
+public class ChanceCategory : Category
 {
     public int ComputePoints(Roll roll)
     {
