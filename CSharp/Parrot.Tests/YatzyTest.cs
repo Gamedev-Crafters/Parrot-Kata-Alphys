@@ -29,6 +29,12 @@ public class YatzyTest
     }
 
     [Fact]
+    public void On_Start_Score_Should_Be_Zero()
+    {
+        Assert.Equal(0, new YatzyGame().Score);
+    }
+
+    [Fact]
     public void After_Roll_Registering_fñlaksdjflñkjasd()
     {
         var yatzy = new YatzyGame();
@@ -49,6 +55,12 @@ public class YatzyTest
         yatzy.CategorizeLastRoll(yatzy.RemainingCategories().First());
         
         Assert.Equal(expected, yatzy.RemainingCategories().Count);
+    }
+
+    [Fact]
+    public void Compute_Points_When_Category_Is_Assigned()
+    {
+        
     }
     
     [Fact]
@@ -77,10 +89,12 @@ public class YatzyGame
 {
     public int Rolls => rolls;
     public Roll LastRoll => lastRoll;
+    public int Score => score;
 
     private int rolls;
     private Roll lastRoll;
     private List<Category> remainingCategories;
+    private int score;
 
     public YatzyGame()
     {
